@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact - Ashmit Kumar Sinha</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        background-color: #f0f0f0;
+        color: #333;
+      }
+      nav {
+        background-color: #333;
+        padding: 10px;
+        text-align: center;
+      }
+      nav a {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 15px;
+        padding: 10px;
+        font-size: 16px;
+      }
+      nav a:hover {
+        background-color: #00bfa6;
+        border-radius: 5px;
+      }
+      h1 {
+        color: #00bfa6;
+        text-align: center;
+        margin: 20px 0;
+      }
+      .contact-container {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+      label {
+        font-size: 16px;
+        margin-bottom: 8px;
+      }
+      input,
+      textarea {
+        padding: 10px;
+        margin-bottom: 15px;
+        border-radius: 5px;
+        border: 2px solid #ddd;
+        font-size: 16px;
+      }
+      input:focus,
+      textarea:focus {
+        border-color: #00bfa6;
+      }
+      button {
+        background-color: #00bfa6;
+        color: white;
+        padding: 10px;
+        font-size: 18px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #009978;
+      }
+      .error {
+        color: red;
+        font-size: 14px;
+      }
+      .success {
+        color: green;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="index.html#about">About Me</a>
+      <a href="index.html#skills">Skills</a>
+      <a href="index.html#projects">Projects</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <h1>Contact Me</h1>
+
+    <div class="contact-container">
+      <form id="contactForm" onsubmit="return validateForm()">
+        <label for="name">Name:</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Enter your name"
+          required
+        />
+
+        <label for="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Enter your email"
+          required
+        />
+
+        <label for="message">Message:</label>
+        <textarea
+          id="message"
+          name="message"
+          placeholder="Your message..."
+          rows="6"
+          required
+        ></textarea>
+
+        <button type="submit">Send Message</button>
+        <div id="statusMessage"></div>
+      </form>
+    </div>
+
+    <script>
+      function validateForm() {
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const message = document.getElementById("message").value.trim();
+        const statusMessage = document.getElementById("statusMessage");
+
+        statusMessage.innerHTML = ""; // Reset message
+
+        if (name === "" || email === "" || message === "") {
+          statusMessage.innerHTML =
+            '<p class="error">All fields are required.</p>';
+          return false;
+        }
+
+        if (!validateEmail(email)) {
+          statusMessage.innerHTML =
+            '<p class="error">Please enter a valid email address.</p>';
+          return false;
+        }
+
+        statusMessage.innerHTML =
+          '<p class="success">Thank you! Your message has been sent successfully.</p>';
+        return false; // To prevent actual form submission
+      }
+
+      function validateEmail(email) {
+        const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        return re.test(email);
+      }
+    </script>
+  </body>
+</html>
